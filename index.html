@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Ghibli Park</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav id="mainNav">
+    <img src="assets/menu-icon.png" id="menuToggle" class="menu-icon" alt="Menu">
+    <ul id="navLinks">
+      <li><a href="#">Visit</a></li>
+      <li><a href="#">Shop With Us</a></li>
+      <li><a href="#">Tickets</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="carousel" id="carousel">
+    <div class="slides" id="slides">
+      <div class="slide card">
+        <figure>
+          <img src="assets/spiritedaway.jpg" alt="Spirited Away" class="poster">
+        </figure>
+        <video class="trailer" autoplay loop muted controls>
+          <source src="assets/spirited-away-trailer.mp4" type="video/mp4">
+        </video>
+        <div class="caption">
+          <h2>Spirited Away</h2>
+          <p>A magical journey into the spirit world.</p>
+        </div>
+      </div>
+      <div class="slide card">
+        <figure>
+          <img src="assets/arrietty.webp" alt="Arriety" class="poster">
+        </figure>
+        <video class="trailer" autoplay loop muted controls>
+          <source src="assets/arrietty-trailer.mp4" type="video/mp4">
+        </video>
+        <div class="caption">
+          <h2>Arriety</h2>
+          <p>A "little" girl's BIG life</p>
+        </div>
+      </div>
+      <div class="slide card">
+        <figure>
+          <img src="assets/kiki.webp" alt="Kiki's Delivery Service" class="poster">
+        </figure>
+        <video class="trailer" autoplay loop muted controls>
+          <source src="assets/kiki-trailer.mp4" type="video/mp4">
+        </video>
+        <div class="caption">
+          <h2>Kiki's Delivery Service</h2>
+          <p>An enchanting witch grows up</p>
+        </div>
+      </div>
+      <div class="slide card">
+        <figure>
+          <img src="assets/myneighbortotoro-still.jpg" alt="My Neighbor Totoro" class="poster">
+        </figure>
+        <video class="trailer" autoplay loop muted controls>
+          <source src="assets/totoro-trailer.mp4" type="video/mp4">
+        </video>
+        <div class="caption">
+          <h2>My Neighbor Totoro</h2>
+          <p>Imagination Joy, Resilience</p>
+        </div>
+      </div>
+      <div class="slide card">
+        <figure>
+          <img src="assets/howlscastle.jpg" alt="Howl's Moving Castle" class="poster">
+        </figure>
+        <video class="trailer" autoplay loop muted controls>
+          <source src="assets/howl-trailer.mp4" type="video/mp4">
+        </video>
+        <div class="caption">
+          <h2>Howl's Moving Castle</h2>
+          <p>Family is what you make of it</p>
+        </div>
+      </div>
+    </div>
+    <button id="prev">&#10094;</button>
+    <button id="next">&#10095;</button>
+  </div>
+
+  <section id="merchandise">
+    <h2>Shop With Us</h2>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for merchandise...">
+      <button id="searchButton">Search</button>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+    <button id="cartButton" class="cart-indicator">Cart (0)</button>
+  </section>
+
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <h2>Your Cart</h2>
+      <ul id="cartItemsList"></ul>
+      <p>Total: <span id="totalPrice">$0</span></p>
+      <button id="proceedToBuy">Proceed to Buy</button>
+    </div>
+  </div>
+
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <h2>Confirm Your Purchase</h2>
+      <form id="confirmationForm">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea id="address" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="paymentMethod">Payment Method:</label>
+          <select id="paymentMethod" required>
+            <option value="">Select</option>
+            <option value="credit">Credit Card</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cardNumber">Card Number:</label>
+          <input type="text" id="cardNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="expiry">Expiry:</label>
+          <input type="text" id="expiry" placeholder="MM/YY" required>
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" required>
+        </div>
+        <button type="submit">Confirm Purchase</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <h2>Order Confirmed!</h2>
+      <p>Thank you, <span id="userName"></span>!</p>
+      <p>Your order of <span id="itemCount"></span> items totaling <span id="totalAmount"></span> will be delivered to:</p>
+      <p><span id="deliveryAddress"></span></p>
+      <p>Expect your package in 3-4 working days.</p>
+      <button id="backToShopping">Back to Shopping</button>
+    </div>
+  </div>
+
+  <section id="registration">
+    <form id="registrationform">
+      <h2>Visit us at Ghibli Park</h2>
+      <div class="form-group">
+        <label for="date-of-visit">Date of Visit:</label>
+        <input type="date" id="date-of-visit" required>
+        <span class="error" id="visitDateError"></span>
+      </div>
+      <div class="form-group">
+        <label for="no-of-visitors">Number of Visitors:</label>
+        <select id="no-of-visitors" required>
+          <option value="">Select</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5+</option>
+        </select>
+        <span class="error" id="visitorsError"></span>
+      </div>
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+        <span class="error" id="nameError"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <span class="error" id="emailError"></span>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+        <span class="error" id="dobError"></span>
+      </div>
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <input type="radio" id="male" name="gender" value="male" required>
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" value="female">
+          <label for="female">Female</label>
+        </div>
+        <span class="error" id="genderError"></span>
+      </div>
+      <div class="form-group">
+        <label for="ticket">Ticket Type:</label>
+        <select id="ticket" required>
+          <option value="">Select</option>
+          <option value="general">General Admission</option>
+          <option value="vip">VIP</option>
+          <option value="family">Family Package</option>
+          <option value="student">Student</option>
+        </select>
+        <span class="error" id="ticketError"></span>
+      </div>
+      <div class="form-group">
+        <label for="comments">Additional Comments:</label>
+        <textarea id="comments" rows="4"></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
